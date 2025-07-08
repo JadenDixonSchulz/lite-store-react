@@ -3,7 +3,7 @@ import type { Derived, ActionMap } from "./store.types";
 
 import type { createStore } from "./store.core";
 
-export function useObservable<
+export function useStore<
   TState extends object,
   TDerived extends Derived,
   TActions extends ActionMap<TState>
