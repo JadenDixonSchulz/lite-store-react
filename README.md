@@ -9,7 +9,7 @@ WIP Minimalist store for react
 ## Example
 
 ```tsx
-// You might not like it, but this is peak typescript!
+// You might not like it, but this is peak typescript! (alt: Look ma, no types!)
 const counterStore = createStore({
   init: () => ({
     count: 0,
