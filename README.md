@@ -1,7 +1,10 @@
 #  lite-react-store
 
-WIP Minimalist Lightweight Store library for React
-Typescript and React first
+WIP Minimalist store for react
+### Goals: 
+- strongly typed function-based actions (no magic strings)
+- avoid flaky typescript inference and no inference factories
+- typescript first
 
 ## Example
 
