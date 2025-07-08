@@ -1,4 +1,4 @@
-# React + TypeScript + Vite
+#  lite-react-store
 
 WIP Minimalist Lightweight Store library for React
 Typescript and React first
