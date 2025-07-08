@@ -1,13 +1,7 @@
-# React + TypeScript + Vite
+import { createStore } from "../../src/store.core";
+import { useStore } from "../../src/store.react";
 
-WIP Minimalist Lightweight Store library for React
-Typescript and React first
-
-## Example
-
-```tsx
-// Types are fully inferred
-// You might not like it, but this is peak typescript!
+// Fully inferred!
 const counterStore = createStore({
   init: () => ({
     count: 0,
@@ -30,4 +24,3 @@ export function Counter() {
     </div>
   );
 }
-```
