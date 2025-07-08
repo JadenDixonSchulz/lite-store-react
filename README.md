@@ -9,7 +9,6 @@ WIP Minimalist store for react
 ## Example
 
 ```tsx
-// Types are fully inferred
 // You might not like it, but this is peak typescript!
 const counterStore = createStore({
   init: () => ({
