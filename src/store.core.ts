@@ -1,30 +1,13 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useSyncExternalStore } from "react";
+import type {
+  Derived,
+  ActionMap,
+  Observable,
+  Listener,
+  Actions,
+} from "./store.types";
+import { mapObj } from "./util";
 
-type Derived = {
-  [K in string]: (...args: any[]) => unknown;
-};
-
-type ActionMap<TState> = {
-  [key: string]: (...args: any[]) => Partial<TState>;
-};
-
-type Actions<TActions extends ActionMap<object>> = {
-  [K in keyof TActions]: (...args: Parameters<TActions[K]>) => void;
-};
-
-type Listener = () => void;
-type SubscribeFn = (listener: Listener) => () => void;
-
-type Observable<
-  TState extends object,
-  TDerived extends Derived,
-  TActionMap extends ActionMap<TState>
-> = {
-  getSnapshot(): TState & TDerived & Actions<TActionMap>;
-  subscribe: SubscribeFn;
-};
-export function createObservable<
+export function createStore<
   TState extends object,
   TDerived extends Derived,
   TActionMap extends ActionMap<TState>
@@ -79,26 +62,4 @@ export function createObservable<
   }
 
   return { getSnapshot, subscribe };
-}
-
-export function useObservable<
-  TState extends object,
-  TDerived extends Derived,
-  TActions extends ActionMap<TState>
->(observable: ReturnType<typeof createObservable<TState, TDerived, TActions>>) {
-  return useSyncExternalStore(observable.subscribe, observable.getSnapshot);
-}
-
-type Mapped<TIn, TOut extends { [K in keyof TIn]: unknown }> = {
-  [K in keyof TIn]: TOut[K];
-} & {
-  // Enforce that TB doesn't have any extra keys
-  [K in Exclude<keyof TOut, keyof TIn>]: never;
-};
-
-function mapObj<From, To extends { [K in keyof From]: unknown }>(
-  input: From,
-  mapper: (input: From) => Mapped<From, To>
-): Mapped<From, To> {
-  return mapper(input);
 }
